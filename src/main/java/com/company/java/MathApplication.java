@@ -1,8 +1,11 @@
 package com.company.java;
 
+import com.google.inject.Inject;
+
 public class MathApplication {
     private CalculatorService calcService;
 
+    @Inject
     public void setCalculatorService(CalculatorService calcService){
         this.calcService = calcService;
     }

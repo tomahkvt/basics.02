@@ -1,29 +1,25 @@
 package com.company.java;
 
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import java.util.logging.Logger;
+
 public class MathApplicationMain {
     public static void main(String [] args){
-        CalculatorServiceImp calculatorServiceImp = new CalculatorServiceImp();
-        MathApplication mathApplication = new MathApplication();
-        mathApplication.setCalculatorService(calculatorServiceImp);
+        Injector injector = Guice.createInjector(new MathApplicationModule());
+        MathApplication mathApplication = injector.getInstance(MathApplication.class);
         System.out.println(mathApplication.add(1,2));
     }
 }
 
-class CalculatorServiceImp implements CalculatorService{
+//Binding Module
+class MathApplicationModule extends AbstractModule {
+    @Override
 
-    public double add(double input1, double input2) {
-        return input1 + input2;
-    }
-
-    public double subtract(double input1, double input2) {
-        return input1 - input2;
-    }
-
-    public double multiply(double input1, double input2) {
-        return input1 * input2;
-    }
-
-    public double divide(double input1, double input2) {
-        return input1/input2;
+    protected void configure() {
+        bind(CalculatorService.class).to(CalculatorServiceImp.class);
     }
 }
+

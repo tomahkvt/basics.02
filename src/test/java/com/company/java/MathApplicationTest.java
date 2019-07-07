@@ -16,7 +16,6 @@ public class MathApplicationTest {
     @TestSubject
     MathApplication mathApplication = new MathApplication();
 
-
     @Mock
     CalculatorService calcService;
 
